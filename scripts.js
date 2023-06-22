@@ -1,12 +1,12 @@
 /*
 Rock paper scissors -
-variables for Rock, Paper, Scissors
-variables for player and computer moves
-Make a function that randomized choices between the vars for the computers play
-Make function that plays a round
-    -returns computer & player selection
-        - Winning if statements
-        - Losing if statements
+variables for player and computer moves - DONE
+Make a function that randomized choices between the vars for the computers play - DONE
+Make function that plays a round - DONE
+    -returns computer & player selection - DONE
+        - Winning if statements - DONE
+        - Losing if statements - DONE
+        - Tie if statements - DONE
 Make a new function called game(), to play 5 rounds (Can use loops)
 */
 
