@@ -7,54 +7,49 @@ Make function that plays a round - DONE
         - Winning if statements - DONE
         - Losing if statements - DONE
         - Tie if statements - DONE
-Make a new function called game(), to play 5 rounds (Can use loops)
+Make a new function called game(), to play 5 rounds (Can use loops) - DONE
 */
 
-//player choice
-let playerChoice = prompt("What is your choice of weapon: rock, paper, or scissors?");  
-//Computer Choice
-let computerChoice = Math.ceil(Math.random() *3);
-//variables as numbers
-if (computerChoice < 1) {
-    computerChoice = "rock";
-} else if(1 <= computerChoice <= 2) {
-    computerChoice = "paper";
-} else {
-    computerChoice = "scissors";
-}
-//defining function
-function game(playerChoice, computerChoice){
-//Checking for a tie
-if (playerChoice === computerChoice) {
-      return "It is a tie";
+let playRoundResult;
+let playerScore = 0;
+let computerScore = 0;
+
+const playGame = () => {
+  for (let i = 0; i < 5; i++) {
+    let choice = Math.floor(Math.random() * 3) + 1;
+
+    function getComputerChoice() {
+      if (choice === 1) return 'ROCK';
+      if (choice === 2) return 'PAPER';
+      return 'SCISSOR';
     }
 
-    //Check for Rock
-    if (playerChoice === "rock") {
-      if (computerChoice === "scissors") {
-        return "Player Wins";
-      } else {
-        return "Computer Wins";
+    function playRound(playerSelection, computerSelection) {
+      const win = (computerSelection === 'ROCK' && playerSelection === 'PAPER') ||
+        (computerSelection === 'SCISSOR' && playerSelection === 'ROCK') ||
+        (computerSelection === 'PAPER' && playerSelection === 'SCISSOR') ||
+        (computerSelection === 'SCISSOR' && playerSelection === 'PAPER');
+      if (computerSelection === playerSelection) return 'Tie!';
+      if (win) {
+        playerScore++;
+        return 'You win!';
       }
+      computerScore++;
+      return 'You lose!';
     }
-    //Check for Paper
-    if (playerChoice === "paper") {
-      if (computerChoice === "scissors") {
-        return "Computer Wins";
-      } else {
-        return "Player Wins";
-      }
-    }
-    //Check for Scissors
-    if (playerChoice === "scissors") {
-      if (computerChoice === "rock") {
-        return "Computer Wins";
-      } else {
-                return "Player Wins";
-      }
-    }
+
+    let player = prompt('Rock, Paper, Scissors', '');
+    const playerSelection = player.toUpperCase();
+    const computerSelection = getComputerChoice();
+    playRoundResult = playRound(playerSelection, computerSelection);
+    console.log(playRound(playerSelection, computerSelection));
+
+    console.log(`Player pick: ${playerSelection}`);
+    console.log(`Computer pick: ${computerSelection}`);
+  }
 }
-//start the game function
-game();
-//print winner
-console.log(game(playerChoice, computerChoice))
+
+playGame();
+
+console.log(`Computer: ${computerScore}`);
+console.log(`Player: ${playerScore}`);
